@@ -1,12 +1,12 @@
-require_relative('models/star')
-require_relative('models/movie')
-require_relative('models/casting')
+require_relative('models/films')
+require_relative('models/customers')
+require_relative('models/tickets')
 
 require('pry')
 
-Casting.delete_all()
-Star.delete_all()
-Movie.delete_all()
+Ticket.delete_all()
+Customer.delete_all()
+Film.delete_all()
 
 binding.pry
 nil

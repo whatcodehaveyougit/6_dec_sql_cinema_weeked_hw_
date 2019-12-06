@@ -1,37 +1,29 @@
-require_relative('../db/sql_runner')
+require_relative('..db/sql_runner')
 
-class Casting
+class Ticket
 
-      attr_reader :id
-      attr_accessor :first_name, :last_name
+attr_reader :id
+attr_accessor :customer_id, :film_id
 
-      def initialize( options )
-        @id = options['id'].to_i if options['id']
-        @movie_id = options['movie_id'].to_i
-        @star_id = options['star_id'].to_i
-        @fee = options['fee'].to_i
-      end
+def initialize ( options )
+  @id = options['id'] if options['id']
+  @film_id = options['film_id'].to_i
+  @customer_id = options['customer_id'].to_i
+end
 
 
-      def self.delete_all()
-        sql = "DELETE FROM castings"
-        SqlRunner.run(sql)
-      end
+  def delete_all()
+    sql = "DELETE FROM Customers"
+    SqlRunner.run(sql)
+  end
 
-      def save()
-        sql = "INSERT into castings
-        ( movie_id,
-          star_id,
-          fee
-          )
-          VALUES (
-            $1, $2, $3
-            ) RETURNING id"
-        values = [@movie_id, @star_id, @fee]
-        # Getting the ID Key
-        casting = SqlRunner.run(sql, values).first
-        @id = casting['id'].to_i
-      end
+
+
+
+
+
+
+
 
 
 end
