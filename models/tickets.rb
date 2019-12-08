@@ -42,7 +42,16 @@ end
   end
 
 
+# =========== Finding all the tickets with a certain id ========== 
 
+ def self.find(id)
+    sql = "SELECT * FROM tickets WHERE customer_id = $1"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    ticket_hash = results.first
+    ticket_info = Ticket.new(ticket_hash)
+    return ticket_info
+  end
 
 
 
