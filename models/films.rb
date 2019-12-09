@@ -51,20 +51,15 @@ def self.delete_all()
   SqlRunner.run(sql)
 end
 
-# def films_customer_has_seen
-#   sql = "SELECT * FROM films INNER JOIN tickets ON films.id = tickets.film_id WHERE customer_id = $1"
-# end
-#   def movies()
-#     sql = "SELECT movies.* FROM movies INNER JOIN castings ON movies.id = castings.movie_id WHERE star_id = $1"
-#     values = [@id]
-#     movie_data = SqlRunner.run(sql, values)
-#     return Movie.map_items(movie_data)
-#   end
+# Why is it returning the film data rather than the customer data?
 
-
-
-
-
+def customers_at_film()
+  sql = "SELECT * FROM customers INNER JOIN tickets
+  ON customers.id = tickets.customer_id WHERE film_id = $1"
+  values = [@id]
+  customers = SqlRunner.run(sql, values)
+  result = customers.map {|customer_hash| Film.new(customer_hash)}
+end
 
 
 

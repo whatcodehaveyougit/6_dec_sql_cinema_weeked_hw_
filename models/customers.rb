@@ -56,7 +56,7 @@ class Customer
   end
 
 
-# ======== =============
+# ======== MVP - shows which films a customer has tickets to see =============
 
 def films_customer_sees()
   sql = "SELECT * FROM films INNER JOIN tickets
@@ -67,22 +67,15 @@ def films_customer_sees()
   return result
 end
 
-  def customer_buys_ticket()
-  sql = "UPDATE customers SET (funds) = $1 - 10
-    WHERE id = $2"
-    values = [@funds, @id]
-    SqlRunner.run(sql, values)
-    return values
-  end
+  # def customer_buys_ticket()
+  # sql = "UPDATE customers SET (funds) = $1 - 10
+  #   WHERE id = $2"
+  #   values = [@funds, @id]
+  #   SqlRunner.run(sql, values)
+  #   return values
+  # end
 
 
-def test()
-  sql ="SELECT * FROM customers INNER JOIN tickets ON customer.id = tickets.customer_id
-  WHERE customer.name = 'John' "
-  values = "John"
-  result = SqlRunner.run( sql, values)
-  return result
-end
 
 
 
